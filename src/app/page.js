@@ -12,7 +12,6 @@ import ExperienceItem from '@/components/experienceItem';
 import GithubIcon from "@/images/GithubIcon.png";
 import EmailIcon from "@/images/EmailIcon.png";
 
-
 export default function Home() {
   var activeLink = 0; // 0, 1, 2 for each respecive link
   const ref = useRef(null);
@@ -59,12 +58,12 @@ export default function Home() {
           <Link href={"mailto:verschurenkai@gmail.com"}>
             <Image src={EmailIcon} width={32} height={32} alt="Email" className="invert opacity-50 scale-90 hover:scale-100 hover:opacity-100 transition all"/>
           </Link>
-          <Link href={"mailto:verschurenkai@gmail.com"}>
+          <a href="/cv.png" download>
             {/* <Image src={EmailIcon} width={32} height={32} alt="Email" /> */}
             <div className="bg-foreground text-background rounded-[50%] font-bold w-8 h-8 flex items-center justify-center opacity-50 scale-90 hover:scale-100 hover:opacity-100 transition all">
               CV
             </div>
-          </Link>
+          </a>
         </div>
       </div>
       <div className="flex-1 overflow-auto max-h-screen scroll-smooth">
