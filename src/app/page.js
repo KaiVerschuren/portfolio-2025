@@ -1,103 +1,126 @@
+'use client';
+
+import { useRef, useEffect } from "react";
+import { useInView } from "motion/react";
+
 import Image from "next/image";
+import Link from "next/link";
+
+import ProjectItem from "@/components/projectItem";
+import ExperienceItem from '@/components/experienceItem';
+
+import GithubIcon from "@/images/GithubIcon.png";
+import EmailIcon from "@/images/EmailIcon.png";
+
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  var activeLink = 0; // 0, 1, 2 for each respecive link
+  const ref = useRef(null);
+  const isInView = useInView({
+  margin: "100px"
+})
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+  console.log("Element is in view: ", isInView)
+}, [isInView])
+  return (
+    <div className="flex flex-col md:flex-row gap-4 px-2 h-screen py-32">
+      <div className="flex flex-col justify-between gap-4 flex-1">
+        <div>
+          <h1 className="text-5xl mb-2">Kai Verschuren</h1>
+          <h2 className="text-xl mb-2">Fullstack Web Developer</h2>
+          <p className="text-muted">
+            A passionate <strong>Frontend / Fullstack</strong> web developer and <strong>UI/UX</strong> enthusiast specialized in building stunning interactive websites/applications.
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+        <div className="">
+          <nav className='flex flex-col gap-2'>
+            <Link href={"#projects"} className="flex items-center gap-2 text-foreground cursor-pointer w-fit">
+              <div className="w-3 h-3 rounded-xl bg-foreground inline-block">
+              </div>
+              Projects
+            </Link>
+            <Link href={"#about"} className="flex items-center gap-2 text-foreground cursor-pointer w-fit">
+              <div className="w-3 h-3 rounded-xl bg-foreground inline-block">
+              </div>
+              About me
+            </Link>
+            <Link href={"#experience"} className="flex items-center gap-2 text-foreground cursor-pointer w-fit">
+              <div className="w-3 h-3 rounded-xl bg-foreground inline-block">
+              </div>
+              Experience
+            </Link>
+          </nav>
+        </div>
+        <div className="flex gap-4 items-center">
+          <Link href={"https://github.com/kaiverschuren"}>
+            <Image src={GithubIcon} width={32} height={32} alt="Github" className="invert opacity-50 scale-90 hover:scale-100 hover:opacity-100 transition all"/>
+          </Link>
+          <Link href={"mailto:verschurenkai@gmail.com"}>
+            <Image src={EmailIcon} width={32} height={32} alt="Email" className="invert opacity-50 scale-90 hover:scale-100 hover:opacity-100 transition all"/>
+          </Link>
+          <Link href={"mailto:verschurenkai@gmail.com"}>
+            {/* <Image src={EmailIcon} width={32} height={32} alt="Email" /> */}
+            <div className="bg-foreground text-background rounded-[50%] font-bold w-8 h-8 flex items-center justify-center opacity-50 scale-90 hover:scale-100 hover:opacity-100 transition all">
+              CV
+            </div>
+          </Link>
+        </div>
+      </div>
+      <div className="flex-1 overflow-auto max-h-screen scroll-smooth">
+        <div id="projects" ref={ref}>
+          <h2 className="text-lg mb-2">Projects</h2>
+          <p className="text-muted mb-4">
+            Below are some of the projects I have developed over my first 2 years of coding. Please note that some of these projects are unfinished—either because I lacked the necessary skills at the time or simply moved on to more interesting challenges. However, rest assured I plan to revisit and improve these projects in the future.
+          </p>
+          <ProjectItem
+          title="GoodieMaticAA"
+          description="Vending Machine w/ Website Control"
+          year="2025"
+          link="https://github.com/KaiVerschuren/Proftaak-2025"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <ProjectItem
+          title="CoinCove"
+          description="Cryptocurrency trading platform"
+          year="2024"
+          link="https://github.com/KaiVerschuren/Proftaak"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <ProjectItem
+          title="Joy Mapper"
+          description="XInput Joystick and button mapper"
+          year="2025"
+          link="https://github.com/KaiVerschuren/Joy-mapper"
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+        <div id='about' className='mt-8'>
+          <h2 className='text-xl mb-2'>About me</h2>
+          <p className='text-muted'>
+            I’m Kai, a 17-year-old student developer from the Netherlands. I enjoy building projects where I can experiment with different tools and ideas. So far, I’ve been working with PHP, CSS, and JavaScript, and I’ve also been exploring React, Next.js, Tailwind, and even some C#. I like learning new techniques step by step and applying them in real projects to keep improving my skills.
+          </p>
+        </div>
+        <div id='experience' className='mt-8'>
+          <h2 className='text-xl mb-4'>Experience</h2>
+          <h3 className='mb-2'>Studies</h3>
+          <div className="flex flex-col gap-4">
+            <ExperienceItem
+              time="2023 - Present"
+              title="Ter AA - MBO Software Development"
+              description="Learning web development, programming, and software design."
+              link="https://www.ter-aa.nl/"
+            />
+            <ExperienceItem
+              time="2019 - 2023"
+              title="Metameer - PIE"
+              description="Studied Producing, Installing, and Energy (PIE)."
+              link="https://www.metameer.nl/"
+            />
+
+          </div>
+        </div>
+        <div>
+
+        </div>
+      </div>
     </div>
   );
 }
