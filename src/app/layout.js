@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${montserrat.variable} ${geist.variable}`}>
-        <body className="bg-background text-foreground container mx-auto overflow-hidden">
+        <body className="bg-background text-foreground container mx-auto md:overflow-hidden">
         {children}
       </body>
     </html>

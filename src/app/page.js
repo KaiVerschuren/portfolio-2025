@@ -23,7 +23,7 @@ export default function Home() {
   console.log("Element is in view: ", isInView)
 }, [isInView])
   return (
-    <div className="flex flex-col md:flex-row gap-4 px-2 h-screen py-32">
+    <div className="flex flex-col md:flex-row gap-4 px-2 md:h-screen py-32">
       <div className="flex flex-col justify-between gap-4 flex-1">
         <div>
           <h1 className="text-5xl mb-2">Kai Verschuren</h1>
@@ -66,7 +66,7 @@ export default function Home() {
           </a>
         </div>
       </div>
-      <div className="flex-1 overflow-auto max-h-screen scroll-smooth">
+      <div className="flex-1 md:overflow-auto md:max-h-screen scroll-smooth">
         <div id="projects" ref={ref}>
           <h2 className="text-lg mb-2">Projects</h2>
           <p className="text-muted mb-4">
